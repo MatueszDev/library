@@ -1,0 +1,35 @@
+html,body{
+    width: 95%;
+    margin: 0;
+    padding: 2.5%;
+    
+    background: url("../images/library.jpg") no-repeat center center fixed;
+}
+
+h1{
+    background-color: #CCCCCCCC;
+    width: 75%;
+    text-align: center;
+    height: 5%;
+    padding: 4%;
+    margin: 6%;
+    margin-left: 10%;
+    margin-top: 0;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    
+    background: #EEEEEE99;
+}
+
+.login{
+
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    background: #EEEEEE99;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 2%;
+    text-align: center;
+}

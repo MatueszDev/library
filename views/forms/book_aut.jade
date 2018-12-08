@@ -1,0 +1,15 @@
+extends ../main
+block data
+    form(method="POST" class="forms")
+        label(class="label") Wybierz tytul ksiazki
+        select(name="book")
+            for book in books
+                option(value=book['id_ksiazka']) #{book['tytul']}
+        br
+        label(class="label") Wybierz autora 
+        select(name="author") 
+            for author in authors
+                option(value=author['id_autor']) #{author['imie']} #{author['nazwisko']}
+        br
+        br
+        input(type="submit" value="Powiąż")

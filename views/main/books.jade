@@ -1,0 +1,12 @@
+extends ../main
+block data
+    label Szukaj
+    form
+        input(type="text" placeholder="Szukaj" id="pattern")
+        input(type="button" value="Szukaj" onclick="search_books()")
+    div(id="books")
+        
+
+block scripts
+    script(src="/javascripts/books.js")
+    

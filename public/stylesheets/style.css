@@ -1,0 +1,58 @@
+body {
+  padding: 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url('../images/stacks.jpg')no-repeat center center fixed;
+}
+
+a {
+  color: #00B7FF;
+}
+nav{
+    padding: 1%;
+    width: 20%;
+    float:left;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-right: 2%;
+    background: #EEEEEE99;
+}
+
+h1{
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    padding-top: 2%;
+    margin-bottom: 1%;
+    padding-bottom: 2%;
+    background: #EEEEEE99;
+}
+
+content{
+    float: left;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    width: 70%;
+    background: #EEEEEE99;
+    padding: 2%;
+}
+
+.forms{
+    text-align: center;
+    padding-bottom:1%;
+}
+
+.label{
+    padding: 2%;
+}
+.input{
+    margin: 0.5%;
+}
+select{
+    margin: 0.5%;
+}
+span{
+    font-weight: bold;
+}

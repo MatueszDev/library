@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    div(class="main")
+        h1 Witaj w wypożyczalni książek
+        nav
+            ul
+                li #[a(href="/main/search/") Wyszukaj ksiżki]
+                li #[a(href="/main/profile/") Profil]
+                li #[a(href="/forms/book/create") Dodaj książke]
+                li #[a(href="/forms/author/create") Dodaj autora]
+                li: a(href="/forms/bind_book_aut") Powiąż ksiżke z autorem
+                li #[a(href="/log_out") Wyloguj ]
+        content
+            block data
+                p hej
+        div(style='clear:both;')

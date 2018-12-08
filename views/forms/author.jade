@@ -1,0 +1,12 @@
+extends ../main
+block data
+    form(method="POST" class="forms")
+        p Podaj imię autora
+        input(type="text" name="name" required)
+        p Podaj nazwisko autora
+        input(type="text" name="surname" required)
+        p Podaj kraj pochodzenia autora
+        input(type="text" name="country" required)
+        br
+        br
+        input(type="submit" value="Utwórz autora")

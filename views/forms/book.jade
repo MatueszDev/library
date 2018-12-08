@@ -1,0 +1,26 @@
+extends ../main
+block data
+    form(method="POST" class="forms")
+        label(class="label") Podaj tytuł ksiązki
+        input(type="text" name="title" class="input" required)
+        br
+        label(class="label") Podaj liczbę stron
+        input(type="text" name="number" class="input" required)
+        br
+        label(class="label") Wybierz oprawe
+        select(name="binding")
+            for binding in bindings
+                option(value=binding['id_oprawa']) #{binding['oprawa']}
+        br
+        label(class="label") Wybierz jezyk w jakim jest książka
+        select(name="language")
+            for lang in languages
+                option(value=lang['id_jezyk']) #{lang['jezyk']}
+        br
+        label(class="label") Wybierz gatunek ksiżaki
+        select(name="genre")
+            for genre in genres
+                option(value=genre['id_gatunek']) #{genre['gatunek']}
+        br
+        br
+        input(type="submit" value="Utwórz książke")

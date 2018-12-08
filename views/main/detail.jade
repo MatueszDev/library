@@ -1,0 +1,23 @@
+extends ../main
+block data
+    p #{book[0]['tytul']} #[br]
+        | Liczba stron: #{book[0]['l_stron']} #[br]
+        | Jezyk: #{book[0]['jezyk']} #[br]
+        | Gatunek: #{book[0]['gatunek']} #[br]
+        | Oprawa: #{book[0]['oprawa']} #[br]
+        | Liczba dostępnych egzemplarzy: #{number_of_copies[0]['available']} z #{number_of_copies[0]['all']} #[br]
+        if number_of_copies[0]['available'] > 0
+            | <a href=#{'/forms/book/lend/'+book[0]['id_ksiazka']}> Wypożycz </a> #[br]
+        else
+            | Brak dostępnych egzemplarzy :( Wróć za kilka dni! #[br]
+    ul
+        for comm in comments
+            li #{comm['komentarz']}
+                | Data dod: #{comm['data_dod'].toISOString().slice(0,10)} przez #{comm['imie']} #{comm['nazwisko']}
+        else
+            li Książka nie ma jeszcze komentarza bądz pierwszy!
+    
+    form(method="POST")
+        input(type="text" placeholder="Napisz komentarz!" name="comment" required)
+        input(type="hidden" name="book_id" value=book[0]['id_ksiazka'])
+        input(type="submit" value="Dodaj")

@@ -1,0 +1,16 @@
+extends ../layout
+block input
+    link(rel='stylesheet', href='/stylesheets/start.css')
+block content
+    h1 Wtaj w wypożyczalni książek
+    br
+    div(class="login")
+        p Zaloguj się do serwisu
+        form(method="POST" action="/api/login")
+            p Podaj login lub email
+            input(type="text" name="login" placeholder="Login lub email")
+            p Podaj haslo
+            input(type="password" name="haslo" placeholder="Hasło")
+            br
+            input(type="submit" value="Zaloguj")
+            p Brak konta? Załóż je #[a(href="createAccount") tutaj!]

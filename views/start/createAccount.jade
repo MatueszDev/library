@@ -1,0 +1,21 @@
+extends index
+
+block content
+    
+    div(class="login")
+        p #{time}
+        form(id="for" method="POST" action="/api/uzytkownik/create")
+            p Podaj email
+            input(type="text" id="email" name="email" onChange="check_if_exists(this.value, this.id)" required)
+            p Podaj login
+            input(type="text" id="login" name="login" onChange="check_if_exists(this.value, this.id)" required)
+            p Podaj hasło
+            input(type="password" id="pass1" name="pass" onChange="check_password_matach()" required)
+            p Powtorz hasło
+            input(type="password" id="pass2" onChange="check_password_matach()" required)
+            br
+            br
+            input(type="submit" id="sub" value="Utworz u�ytkownika")
+            
+    script(src="javascripts/createAccount.js")
+            

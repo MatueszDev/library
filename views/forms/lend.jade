@@ -1,0 +1,13 @@
+extends ../main
+block data
+    div(id="lend")
+        form(method="POST")
+            l Wybierz liczbe dni: #[br]
+            input(type="text" name="days" id="days" value="7" onchange="calc_cost()" required)
+            p(id="message")
+            l Przewidywana data oddania ksiżąki: #[span(id="date") #{date}] #[br]
+            l Obecny koszt: #[span(id="cost") #{cost[0]['c_bazowa']} zł]  #[br]
+            input(type="hidden" id="id_book" value=)
+            input(type="submit" value="Wypożycz")
+block scripts
+    script(src="/javascripts/lend.js")
