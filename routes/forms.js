@@ -40,8 +40,9 @@ router.get('/book/lend/:id', function(req, res, next){
     req.session.id_book = req.params.id;
     req.call_from_server = 1;
     let date = new Date();
-    books.get_costs(req, res, next)
+    books.get_costs(req, res, next);
     date.setDate(date.getDate() + 7);
+    console.log(res.rows);
     let context = {
         date: date.toISOString().slice(0,10),
         cost: res.rows

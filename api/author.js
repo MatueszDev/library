@@ -7,7 +7,7 @@ module.exports = {
         let name = req.body.name;
         let surname = req.body.surname;
         let country = req.body.country;
-        let query = `INSERT INTO autor values (DEFAULT, '${name}', '${country}', '${surname}')`;
+        let query = `INSERT INTO projekt.autor values (DEFAULT, '${name}', '${country}', '${surname}')`;
         db.query_async(query, [], (err, re)=>{
             if (err) {
                 console.log(err);
@@ -23,7 +23,7 @@ module.exports = {
         });
     },
     get_all_authors: function(req, res, next){
-        let query = `SELECT * FROM autor`
+        let query = `SELECT * FROM projekt.autor`
         let result = db.query_sync(query);
         if(req.call_from_server){
             res.rows = result;

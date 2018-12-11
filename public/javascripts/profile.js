@@ -31,6 +31,11 @@ function load_profile(){
                     html += `<p>Nazwisko: ${response[0]['nazwisko']}</p>`;
                     html += `<p>Telefon: ${response[0]['nr_telefonu']}</p>`;
                     html += `<p>Data otwarcia kontra: ${response[0]['data_o'].slice(0,10)}`;
+                    html += `<p>Saldo: ${response[0]['saldo']} </p>`;
+                    html += `<form method="GET" action="/api/reader/charge/${response[0]['id_czytelnik']}">
+                    <input type="text" name="money" placeholder="Doładuj konto!"/>
+                    <input type="submit"  value="doładuj"/>
+                    </form>`;
                     if(response.length == 1){
                         html += '<p> Nie masz jeszcze wypożyczonych książek</p>';
                     }else{

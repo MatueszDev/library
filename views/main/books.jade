@@ -1,9 +1,11 @@
 extends ../main
 block data
     label Szukaj
-    form
+    form(action="#" onsubmit="return search_books(this);")
         input(type="text" placeholder="Szukaj" id="pattern")
         input(type="button" value="Szukaj" onclick="search_books()")
+    a(href="#" onclick="toogle_advanced_search()") Dodatkowe opcje
+    div(id="adv_search" style="display:none")
     div(id="books")
         
 

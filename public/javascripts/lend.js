@@ -18,14 +18,19 @@ let calc_cost = function(){
     let days = parseInt(days_el.value);
     let message_el = document.getElementById("message");
     message_el.innerHTML = "";
+    let submit_button = document.getElementById("submit");
     if(days < 7){
-        message.innerHTML = "Nie można wypożyczyć ksiązki na krócej niż 7 dni."
+        message.innerHTML = "Nie można wypożyczyć ksiązki na krócej niż 7 dni.";
+        submit_button.type = 'button';
+        submit_button.onclick ="";
         return;
     }
     calc_date();
     let curr_cost = cost + (days - 7)*multiplier;
     console.log(cost, multiplier);
     cost_el.innerHTML = `${curr_cost} zł`;
+    submit_button.type = 'submit';
+    submit_button.onclick = "check_account_money()";
 }
 
 let get_lend_constants = function(){
@@ -50,6 +55,24 @@ let get_lend_constants = function(){
     id_book = id_book[id_book.length-1];
     console.log(`/api/books/cost_constatnt/${id_book}`);
     xmlhttp.open("GET", `/api/books/cost_constatnt/${id_book}`, true );
+    xmlhttp.send(); 
+}
+
+let check_account_money = function(){
+    let xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp=new XMLHttpRequest();
+    }
+    else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }    
+    xmlhttp.onreadystatechange=function(){
+    if (xmlhttp.readyState==4 && xmlhttp.status==200){
+       let response = JSON.parse(xmlhttp.responseText); 
+       console.log(response);
+    }
+}
+    xmlhttp.open("GET", `/api/reader/saldo`, false );
     xmlhttp.send(); 
 }
 

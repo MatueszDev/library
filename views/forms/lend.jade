@@ -8,6 +8,6 @@ block data
             l Przewidywana data oddania ksiżąki: #[span(id="date") #{date}] #[br]
             l Obecny koszt: #[span(id="cost") #{cost[0]['c_bazowa']} zł]  #[br]
             input(type="hidden" id="id_book" value=)
-            input(type="submit" value="Wypożycz")
+            input(type="submit" value="Wypożycz" id="submit")
 block scripts
     script(src="/javascripts/lend.js")

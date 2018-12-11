@@ -36,6 +36,7 @@ router.get('/books/by_pattern', books.get_books_by_pattern);
 
 router.get('/profile', user.get_profile);
 router.get('/reader/:id', user.get_reader_data);
+router.get('/reader/charge/:id', user.charge_account);
 
 router.get('/author/authors_all/', author.get_all_authors);
 

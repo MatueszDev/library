@@ -16,11 +16,10 @@ module.exports ={
         // const pool = new Pool({
         //   connectionString: connectionString,
         // });
-        let q = 'set search_path to projekt;' + text;
-        return pool.query(q, params, callback);
+        
+        return pool.query(text, params, callback);
     },
     query_sync: (text, params) =>{
-        let q = 'set search_path to projekt;' + text;
-        return client_s.querySync(q, params);
+        return client_s.querySync(text, params);
     }
 }
