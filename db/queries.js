@@ -9,7 +9,12 @@ const pool = new Pool({
 //   // console.log(err, res);
 // });
 const client_s = new Client_sync();
-client_s.connectSync(connectionString);
+client_s.connectSync(connectionString, (err)=>{
+    if(err){
+        console.log(err);
+        return;
+    }
+});
 
 module.exports ={
     query_async: (text, params, callback) => {

@@ -18,18 +18,16 @@ let calc_cost = function(){
     let days = parseInt(days_el.value);
     let message_el = document.getElementById("message");
     message_el.innerHTML = "";
-    let submit_button = document.getElementById("submit");
+    let submit_button = document.getElementById("btnsubmit");
     if(days < 7){
         message.innerHTML = "Nie można wypożyczyć ksiązki na krócej niż 7 dni.";
-        submit_button.type = 'button';
-        submit_button.onclick ="";
+        submit_button.onclick = "";
         return;
     }
     calc_date();
     let curr_cost = cost + (days - 7)*multiplier;
     console.log(cost, multiplier);
     cost_el.innerHTML = `${curr_cost} zł`;
-    submit_button.type = 'submit';
     submit_button.onclick = "check_account_money()";
 }
 
@@ -69,10 +67,22 @@ let check_account_money = function(){
     xmlhttp.onreadystatechange=function(){
     if (xmlhttp.readyState==4 && xmlhttp.status==200){
        let response = JSON.parse(xmlhttp.responseText); 
-       console.log(response);
+       let cost_span = document.getElementById("cost");
+       let account_bilans = response[0].saldo;
+       if(account_bilans - cost_span.value < 0){
+           cost_span.appendChild("<p>Nie masz wystarczajaco srodków na koncie</p>");
+       }else{
+           let form = document.getElementById("form");
+           let input = document.createElement("input");
+           input.name="cost";
+           input.value=cost_span.value;
+           input.style="display:none";
+           form.appendChild(input);
+           form.submit();
+       }
     }
 }
-    xmlhttp.open("GET", `/api/reader/saldo`, false );
+    xmlhttp.open("GET", `/api/reader/saldo`);
     xmlhttp.send(); 
 }
 

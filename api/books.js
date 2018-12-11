@@ -167,6 +167,7 @@ module.exports = {
         let return_date = new Date();
         return_date.setDate(return_date.getDate() + days);
         let today = new Date();
+        console.log(req.body);
         return_date = return_date.toISOString().slice(0, 10);
         today = today.toISOString().slice(0, 10);
         let instance_query = `SELECT id_egzemplarz FROM projekt.kopia WHERE id_ksiazka=${id_book} and status=TRUE LIMIT 1`;

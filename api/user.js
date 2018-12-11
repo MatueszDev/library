@@ -179,8 +179,20 @@ module.exports = {
     },
     get_saldo: function(req, res, next){
         let id_reader = req.session.id_reader;
-        let q = `SELECT saldo FROM projekt.czytelnik WHERE id_czytelnik=${id_reader}`;
-        
+        let q = `SELECT c.saldo FROM projekt.czytelnik c WHERE c.id_czytelnik='${id_reader}'`;
+        db.query_async(q, [], (err,re)=>{
+            if(err){
+                console.log(err);
+                res.redirect(url.format({
+                    pathname: '/default', 
+                    query: {
+                        message: "Coś poszło nie tak. Sprobój jeszcze raz :( "
+                    }
+                }));
+                return;
+            }
+            res.send(re.rows);
+        });
     }
 }
 
