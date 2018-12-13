@@ -193,6 +193,22 @@ module.exports = {
             }
             res.send(re.rows);
         });
+    },
+    get_readers_with_exceed_time: function(req, res, next){
+        let q = `SELECT * FROM reader_after_limit`
+        db.query_async(q, [], (err, re)=>{
+            if(err){
+                console.log(err);
+                res.redirect(url.format({
+                    pathname: '/default', 
+                    query: {
+                        message: "Coś poszło nie tak. Sprobój jeszcze raz :( "
+                    }
+                }));
+                return;
+            }
+            res.send(re.rows);
+        });
     }
 }
 

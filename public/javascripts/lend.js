@@ -75,7 +75,7 @@ let check_account_money = function(){
            let form = document.getElementById("form");
            let input = document.createElement("input");
            input.name="cost";
-           input.value=cost_span.value;
+           input.value=cost_span.innerHTML;
            input.style="display:none";
            form.appendChild(input);
            form.submit();

@@ -175,6 +175,8 @@ module.exports = {
         let insert_update_query = `INSERT INTO projekt.czyt_kopia values 
         ('${id_reader}', '${id_instance}', '${today}', '${return_date}');
         UPDATE projekt.kopia SET status=FALSE WHERE id_egzemplarz=${id_instance}`;
+        let saldo = req.body.cost;
+        
         db.query_async(insert_update_query, [], (err, re)=>{
             if (err) {
                 console.log(err);
@@ -188,6 +190,7 @@ module.exports = {
             }
             res.redirect('/main')
         });
+        update_user_money(id_reader, saldo);
     },
     return_book: function(req, res, next){
         let id_instance = req.params.id;
@@ -225,9 +228,28 @@ module.exports = {
         db.query_async(query, [], (err, re)=>{
             if (err) {
                 console.log(err);
+                return;
             }
             console.log(re.rows);
             res.send(re.rows);
         });
     }
+}
+
+function update_user_money(id_reader, saldo){
+    let curr_saldo_q = `SELECT saldo FROM projekt.czytelnik WHERE id_czytelnik=${id_reader}`;
+    db.query_async(curr_saldo_q, [], (err, re)=>{
+        if (err) {
+            console.log(err);
+            return;
+        }
+        let curr_s = parseFloat(re.rows[0].saldo);
+        let bilans = curr_s - parseFloat(saldo);
+        let update_q = `UPDATE projekt.czytelnik SET saldo=${bilans} WHERE id_czytelnik=${id_reader}`;
+        db.query_async(update_q, [], (err, re)=>{
+            if(err){
+                console.log(err);
+            }
+        });
+    });
 }

@@ -38,6 +38,7 @@ router.get('/profile', user.get_profile);
 router.get('/reader/:id(\\d+)', user.get_reader_data);
 router.get('/reader/charge/:id', user.charge_account);
 router.get('/reader/saldo', user.get_saldo);
+router.get('/reader/after_limit', user.get_readers_with_exceed_time)
 
 router.get('/author/authors_all/', author.get_all_authors);
 
