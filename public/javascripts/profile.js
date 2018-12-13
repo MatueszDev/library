@@ -41,7 +41,7 @@ function load_profile(){
                     }else{
                         html += "<ul> Wypożyczone książki"
                         for(let i=1; i < response.length; i++){
-                            html += `<li> Tytul: ${response[i]['tytul']} Data zwrotu: ${response[i]['data_zwrotu']} <br/>
+                            html += `<li> Tytul: ${response[i]['tytul']} Data zwrotu: ${response[i]['data_zwrotu'].slice(0,10)} <br/>
                             <a href='/main/book/return/${response[i]['id_egzemplarz']}'>Zwróć teraz</a></li>`;
                         }
                         html += "</ul>";

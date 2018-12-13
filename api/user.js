@@ -133,10 +133,10 @@ module.exports = {
         let date = new Date().toISOString().slice(0,10);
         console.log(req.body);
         let login = req.session.login;
-        let query = `INSERT INTO projekt.czytelnik (id_czytelnik, imie, nazwisko, nr_telefonu, data_o, id_karta)
-            values (DEFAULT, '${name}', '${surname}', '${phone}', '${date}', 1);
+        let query = `INSERT INTO projekt.czytelnik (id_czytelnik, imie, nazwisko, nr_telefonu, data_o, id_karta, saldo)
+            values (DEFAULT, '${name}', '${surname}', '${phone}', '${date}', 1, 0);
             UPDATE projekt.uzytkownik SET id_czytelnik=(
-                SELECT MAX(id_czytelnik) FROM czytelnik
+                SELECT MAX(id_czytelnik) FROM projekt.czytelnik
             ) WHERE login='${login}'`;
         console.log(query);
         db.query_async(query, [], (err, re)=>{
@@ -151,7 +151,7 @@ module.exports = {
                 return;
             }
             console.log(re);
-            req.session.id_reader = db.query_sync('SELECT MAX(id_czytelnik) as id FROM czytelnik')[0]['id'];
+            req.session.id_reader = db.query_sync('SELECT MAX(id_czytelnik) as id FROM projekt.czytelnik')[0]['id'];
             res.redirect('/main');
         });
     },

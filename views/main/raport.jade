@@ -1,0 +1,16 @@
+extends ../main
+block data
+    table
+        tr
+            th Data wpisu
+            th Tytul ksiazki
+            th Imie
+            th Nazwisko
+            th Akcja
+        for record in records
+            tr
+                td #{record['data_wpisu'].toISOString().slice(0,10)}
+                td #{record['tytul']}
+                td #{record['imie']}
+                td #{record['nazwisko'] }
+                td #{record['akcja']}

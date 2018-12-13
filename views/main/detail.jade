@@ -6,10 +6,14 @@ block data
         | Gatunek: #{book[0]['gatunek']} #[br]
         | Oprawa: #{book[0]['oprawa']} #[br]
         | Liczba dostępnych egzemplarzy: #{number_of_copies[0]['available']} z #{number_of_copies[0]['all']} #[br]
-        if number_of_copies[0]['available'] > 0
-            | <a href=#{'/forms/book/lend/'+book[0]['id_ksiazka']}> Wypożycz </a> #[br]
+        
+        if id_reader == 1
+            | By wypożczyć książke musisz posiadać konto czytelnicze!
         else
-            | Brak dostępnych egzemplarzy :( Wróć za kilka dni! #[br]
+            if number_of_copies[0]['available'] > 0
+                | <a href=#{'/forms/book/lend/'+book[0]['id_ksiazka']}> Wypożycz </a> #[br]
+            else
+                | Brak dostępnych egzemplarzy :( Wróć za kilka dni! #[br]
     ul
         for comm in comments
             li #{comm['komentarz']}

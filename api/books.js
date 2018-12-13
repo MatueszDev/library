@@ -233,6 +233,16 @@ module.exports = {
             console.log(re.rows);
             res.send(re.rows);
         });
+    },
+    raport: function(req, res, next){
+        let q = `SELECT k.tytul, c.imie, c.nazwisko, a.akcja, hw.data_wpisu FROM projekt.historia_wypozyczen hw
+        JOIN projekt.kopia ko ON hw.id_egzemplarz=ko.id_egzemplarz
+        JOIN projekt.ksiazka k ON k.id_ksiazka=ko.id_ksiazka
+        JOIN projekt.akcja a ON hw.id_akcja=a.id_akcja
+        JOIN projekt.czytelnik c ON c.id_czytelnik=hw.id_czyt`
+        let response = db.query_sync(q);
+        res.rows = response;
+        console.log(response);
     }
 }
 

@@ -41,6 +41,7 @@ router.get('/book/:id', function(req, res, next){
     req.call_from_server = 1;
     books.get_book_detail(req, res, next);
     let context = res.rows;
+    context.id_reader = req.session.id_reader;
     res.render('main/detail', context);
 });
 router.post('/book/:id', function(req, res,next){
@@ -48,5 +49,15 @@ router.post('/book/:id', function(req, res,next){
     res.redirect(`/main/book/${req.params.id}`);
 });
 router.get('/book/return/:id', books.return_book);
+
+router.get('/raport', function(req, res, next){
+    req.call_from_server = 1;
+    books.raport(req, res, next);
+    let context = {
+        records: res.rows
+    }
+    context.records.data_wpisu = 
+    res.render('main/raport', context);
+});
 
 module.exports = router;
