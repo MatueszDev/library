@@ -97,7 +97,8 @@ module.exports = {
     bind_author: function(req, res, next){
         let author_id = req.body.author;
         let book_id = req.body.book;
-        let query = `INSERT INTO projekt.autor_ksiazka values ('${author_id}', '${book_id}')`;
+        let query = `INSERT INTO projekt.autor_ksiazka values ('${author_id}', '${book_id}');
+        INSERT INTO projekt.kopia values (DEFAULT, 1, TRUE, ${book_id})`;
         db.query_async(query, [], (err, re)=>{
             if (err) {
                 console.log(err);

@@ -3,8 +3,7 @@ var router = express.Router();
 const books = require('../api/books');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    //if(req.session.logged)
-    if(true){
+    if(req.session.logged){
         context = {
             title: "Główny widok"
         }
@@ -14,16 +13,14 @@ router.get('/', function(req, res, next) {
     }
 });
 router.get('/search', function(req, res, next){
-    //if(!req.session.logged){
-    if(false){
+    if(!req.session.logged){
         res.redirect('/');
         return;
     }
     res.render('main/books');
 });
 router.get('/profile', function(req, res, next){
-    //if(!req.session.logged){
-    if(false){
+    if(!req.session.logged){
         res.redirect('/');
         return;
     }
@@ -56,8 +53,15 @@ router.get('/raport', function(req, res, next){
     let context = {
         records: res.rows
     }
-    context.records.data_wpisu = 
+    // context.records.data_wpisu = 
     res.render('main/raport', context);
 });
 
+router.get('/user_with_books', function(req, res, next){
+    res.render('main/readers_with_books');
+});
+
+router.get('/user_outdated', function(req, res, next){
+    res.render('main/readers_outdated');
+});
 module.exports = router;

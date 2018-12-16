@@ -69,7 +69,8 @@ let check_account_money = function(){
        let response = JSON.parse(xmlhttp.responseText); 
        let cost_span = document.getElementById("cost");
        let account_bilans = response[0].saldo;
-       if(account_bilans - parseInt(cost_span.textContent) <= 0){
+       let to_pay = parseFloat(cost_span.textContent);
+       if(isNaN(to_pay) || account_bilans - to_pay <= 0){
            cost_span.textContent ="Nie masz wystarczajaco srodków na koncie";
        }else{
            let form = document.getElementById("form");

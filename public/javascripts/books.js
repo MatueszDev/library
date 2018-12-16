@@ -28,9 +28,12 @@ function load_books(){
 
 function search_books(){
     let pattern = document.getElementById("pattern").value;
+    let adv_search_panel = document.getElementById("adv_search"); 
     if(adv_search_panel.style.display != "none"){
-        
-    
+        let id_genre = document.getElementsByTagName("genre");
+        console.log(id_genre);
+        // xmlhttp.open("GET", `/api/books/advance?pattern=${pattern}&genre=${id_genre}&binding=${id_binding}&language=${id_lang}`);
+        // xmlhttp.send();
     }
     xmlhttp.open("GET", `/api/books/by_pattern?pattern=${pattern}`);
     xmlhttp.send();
@@ -63,7 +66,7 @@ async function load_adv_search(){
         html += `<option value=${genre[el]['id_gatunek']}> ${genre[el]['gatunek']}</option>`;
     }
     html += "</select>";
-    html += `Gatunek <select name="lang">`
+    html += `Język <select name="lang">`
     for(let el in lang){
         html += `<option value=${lang[el]['id_jezyk']}> ${lang[el]['jezyk']}</option>`;
     }

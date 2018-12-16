@@ -16,8 +16,8 @@ block data
                 | Brak dostępnych egzemplarzy :( Wróć za kilka dni! #[br]
     ul
         for comm in comments
-            li #{comm['komentarz']}
-                | Data dod: #{comm['data_dod'].toISOString().slice(0,10)} przez #{comm['imie']} #{comm['nazwisko']}
+            li #{comm['komentarz']} #[br]
+                i Data dod: #{comm['data_dod'].toISOString().slice(0,10)} przez #{comm['imie']} #{comm['nazwisko']}
         else
             li Książka nie ma jeszcze komentarza bądz pierwszy!
     

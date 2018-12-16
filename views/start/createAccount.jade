@@ -4,7 +4,7 @@ block content
     
     div(class="login")
         p #{time}
-        form(id="for" method="POST" action="/api/uzytkownik/create")
+        form(id="for" method="POST" action="/api/user/create")
             p Podaj email
             input(type="text" id="email" name="email" onChange="check_if_exists(this.value, this.id)" required)
             p Podaj login
@@ -15,7 +15,7 @@ block content
             input(type="password" id="pass2" onChange="check_password_matach()" required)
             br
             br
-            input(type="submit" id="sub" value="Utworz u�ytkownika")
+            input(type="submit" id="sub" value="Utworz użytkownika")
             
     script(src="javascripts/createAccount.js")
             

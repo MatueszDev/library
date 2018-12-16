@@ -1,11 +1,14 @@
 body {
-  padding: 10px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: url('../images/stacks.jpg')no-repeat center center fixed;
+    padding: 10px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background: url('../images/stacks.jpg')no-repeat center center fixed;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+.menu:hover{
+    color: #00B7FF; 
 }
 nav{
     padding: 1%;
@@ -55,4 +58,13 @@ select{
 }
 span{
     font-weight: bold;
+}
+
+th, td{
+    text-align: left;
+    width: 1%;
+}
+.menu{
+    padding: 2%;
+    color: #000000;
 }

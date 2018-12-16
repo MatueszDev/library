@@ -152,6 +152,7 @@ module.exports = {
             }
             console.log(re);
             req.session.id_reader = db.query_sync('SELECT MAX(id_czytelnik) as id FROM projekt.czytelnik')[0]['id'];
+            console.log(req.session.id_reader);
             res.redirect('/main');
         });
     },
@@ -196,6 +197,22 @@ module.exports = {
     },
     get_readers_with_exceed_time: function(req, res, next){
         let q = `SELECT * FROM reader_after_limit`
+        db.query_async(q, [], (err, re)=>{
+            if(err){
+                console.log(err);
+                res.redirect(url.format({
+                    pathname: '/default', 
+                    query: {
+                        message: "Coś poszło nie tak. Sprobój jeszcze raz :( "
+                    }
+                }));
+                return;
+            }
+            res.send(re.rows);
+        });
+    },
+    get_readers_with_books:function(req, res, next){
+        let q = `SELECT * FROM readers_with_books`
         db.query_async(q, [], (err, re)=>{
             if(err){
                 console.log(err);
