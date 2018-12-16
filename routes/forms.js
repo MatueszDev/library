@@ -51,4 +51,16 @@ router.get('/book/lend/:id', function(req, res, next){
 });
 router.post('/book/lend/:id', books.lend_book);
 
+router.get('/magazine', function(req, res, next){
+    req.call_from_server = 1;
+    books.get_books_titles(req, res, next);
+    let context = {
+        books: res.rows,
+    }
+    books.all_magazine(req, res, next);
+    context.locations = res.rows;
+    res.render('forms/magazine.jade', context);
+});
+router.post('/magazine', books.add_instance);
+
 module.exports = router;

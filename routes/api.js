@@ -33,6 +33,7 @@ router.get('/books/languages', books.get_languages);
 router.get('/books/genre', books.get_genre);
 router.get('/books/cost_constatnt/:id', books.get_cost_and_multiplier);
 router.get('/books/by_pattern', books.get_books_by_pattern);
+router.get('/books/list_of_available_books', books.list_of_available_books);
 
 router.get('/profile', user.get_profile);
 router.get('/reader/:id(\\d+)', user.get_reader_data);

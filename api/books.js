@@ -244,6 +244,36 @@ module.exports = {
         let response = db.query_sync(q);
         res.rows = response;
         console.log(response);
+    },
+    add_instance: function(req, res, next){
+        let id_mag = req.body.location;
+        let id_book = req.body.book;
+        let q = `INSERT INTO projekt.kopia values 
+        (DEFAULT, ${id_mag}, TRUE ,${id_book})`;
+        db.query_async(q, [], (err, re)=>{
+            if (err) {
+                console.log(err);
+            }
+        });
+        res.redirect('/main');
+    },
+    all_magazine: function(req, res, next){
+        let q = `SELECT * FROM projekt.magazyn`;
+        let response = db.query_sync(q);
+        if(req.call_from_server){
+            res.rows = response; 
+        }else{
+            res.send(response);
+        }
+    },
+    list_of_available_books: function(req, res, next){
+        let q = `SELECT * FROM list_of_available_books`;
+        let response = db.query_sync(q);
+        if(req.call_from_server){
+            res.rows = response; 
+        }else{
+            res.send(response);
+        }
     }
 }
 

@@ -60,12 +60,20 @@ $$ LANGUAGE 'plpgsql';
 CREATE TRIGGER lend_book_trigger
 AFTER INSERT OR DELETE ON projekt.czyt_kopia
 FOR EACH ROW EXECUTE PROCEDURE lend_book_trigger();
-`
+`;
+
+let list_of_available_books = `CREATE OR REPLACE VIEW list_of_available_books AS
+SELECT k.tytul, COUNT(*) FROM projekt.kopia ko
+JOIN projekt.ksiazka k ON k.id_ksiazka=ko.id_ksiazka
+WHERE ko.status=TRUE
+GROUP BY k.tytul
+HAVING COUNT(*) > 0 `;
 
 let queries = [
     book_after_date_view,
     reader_with_book,
-    lend_book_trigger
+    lend_book_trigger,
+    list_of_available_books
 ]
 
 for(const query of queries){

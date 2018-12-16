@@ -64,4 +64,9 @@ router.get('/user_with_books', function(req, res, next){
 router.get('/user_outdated', function(req, res, next){
     res.render('main/readers_outdated');
 });
+
+router.get('/list_of_available_books',function(req, res, next){
+    res.render('main/list');
+});
+
 module.exports = router;

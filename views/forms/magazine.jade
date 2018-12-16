@@ -1,0 +1,16 @@
+extends ../main
+block data
+    p Dodawanie egzemplarza do magazynu
+    form(method="POST" class="forms")
+        label(class="label") Wybierz egzemplarz książki
+        select(name="book")
+            for book in books
+                option(value=book['id_ksiazka']) #{book['tytul']}
+        br
+        label(class="label") Wybierz lokacje
+        select(name="location")
+            for loc in locations 
+                option(value=loc['id_magazyn']) #{loc['miejscowosc']} #{loc['ulica']}
+        br
+        br
+        input(type="submit" value="Dodaj")
