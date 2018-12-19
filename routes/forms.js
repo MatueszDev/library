@@ -6,7 +6,11 @@ const books = require('../api/books');
 
 
 router.get('/author/create', function(req, res, next){
-    res.render('forms/author');
+    let context = {
+        title: "Autor",
+        super_user: req.session.super_use
+    }
+    res.render('forms/author', context);
 });
 router.post('/author/create', author.create_author);
 
@@ -20,6 +24,8 @@ router.get('/book/create', function(req, res, next){
     context.languages = res.rows;
     books.get_genre(req, res);
     context.genres = res.rows;
+    context.title = "Książka";
+    context.super_user = req.session.super_user;
     
     res.render('forms/book', context);
 });
@@ -32,6 +38,8 @@ router.get('/bind_book_aut', function(req, res, next){
     context.books = res.rows;
     author.get_all_authors(req, res, next);
     context.authors = res.rows;
+    context.title = "Powiązanie";
+    context.super_user = req.session.super_user;
     res.render('forms/book_aut', context);
 });
 router.post('/bind_book_aut', books.bind_author);
@@ -45,7 +53,9 @@ router.get('/book/lend/:id', function(req, res, next){
     console.log(res.rows);
     let context = {
         date: date.toISOString().slice(0,10),
-        cost: res.rows
+        cost: res.rows,
+        title: "Wypożycznie",
+        super_user: req.session.super_user
     }
     res.render('forms/lend', context);
 });
@@ -56,6 +66,8 @@ router.get('/magazine', function(req, res, next){
     books.get_books_titles(req, res, next);
     let context = {
         books: res.rows,
+        title: "Magazyn",
+        super_user: req.session.super_user
     }
     books.all_magazine(req, res, next);
     context.locations = res.rows;

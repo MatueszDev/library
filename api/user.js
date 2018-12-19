@@ -61,7 +61,7 @@ module.exports = {
     sign_in:function(req, res, next){
         let user = req.body.login;
         let pass = req.body.haslo;
-        let query = ` SELECT email, login, id_czytelnik FROM projekt.uzytkownik WHERE (email='${user}' OR login='${user}') AND haslo='${pass}' `;
+        let query = ` SELECT email, login, id_czytelnik, admin FROM projekt.uzytkownik WHERE (email='${user}' OR login='${user}') AND haslo='${pass}' `;
         db.query_async(query, [], (err, re)=>{
             if(err){
                 console.log(err);
@@ -80,6 +80,7 @@ module.exports = {
                 res.redirect('/');
                 return;
             }
+            req.session.super_user = re.rows[0]['admin'] 
             req.session.login = re.rows[0]['login'];
             req.session.id_reader = re.rows[0]['id_czytelnik'];
             //req.session.logged = permission;

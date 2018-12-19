@@ -202,6 +202,7 @@ module.exports = {
                 console.log(err);
             }
         });
+        
         res.redirect('/main/profile');
     },
     get_cost_and_multiplier: function(req, res, next){

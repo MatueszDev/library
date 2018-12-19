@@ -4,8 +4,9 @@ const books = require('../api/books');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     if(req.session.logged){
-        context = {
-            title: "Główny widok"
+        let context = {
+            title: "Główny widok",
+            super_user: req.session.super_user
         }
         res.render('main', context);
     }else{
@@ -17,7 +18,11 @@ router.get('/search', function(req, res, next){
         res.redirect('/');
         return;
     }
-    res.render('main/books');
+    let context = {
+        title: "Wyszukaj książke",
+        super_user: req.session.super_user
+    }
+    res.render('main/books', context);
 });
 router.get('/profile', function(req, res, next){
     if(!req.session.logged){
@@ -26,6 +31,8 @@ router.get('/profile', function(req, res, next){
     }
     let context = {
         id_user: req.session.login,
+        title: "Profil",
+        super_user: req.session.super_user
     }
     res.render('main/profile', context);
 });
@@ -39,6 +46,8 @@ router.get('/book/:id', function(req, res, next){
     books.get_book_detail(req, res, next);
     let context = res.rows;
     context.id_reader = req.session.id_reader;
+    context.title = "Profil";
+    context.super_user = req.session.super_user;
     res.render('main/detail', context);
 });
 router.post('/book/:id', function(req, res,next){
@@ -51,22 +60,36 @@ router.get('/raport', function(req, res, next){
     req.call_from_server = 1;
     books.raport(req, res, next);
     let context = {
-        records: res.rows
+        records: res.rows,
+        title: "Raport",
+        super_user: req.session.super_user
     }
     // context.records.data_wpisu = 
     res.render('main/raport', context);
 });
 
 router.get('/user_with_books', function(req, res, next){
-    res.render('main/readers_with_books');
+    let context = {
+        title: "Użytkownicy z książkami",
+        super_user: req.session.super_user
+    }
+    res.render('main/readers_with_books', context);
 });
 
 router.get('/user_outdated', function(req, res, next){
-    res.render('main/readers_outdated');
+    let context = {
+        title: "Użytkownicy z książkami",
+        super_user: req.session.super_user
+    }
+    res.render('main/readers_outdated', context);
 });
 
 router.get('/list_of_available_books',function(req, res, next){
-    res.render('main/list');
+    let context = {
+        title: "Użytkownicy z książkami",
+        super_user: req.session.super_user
+    }
+    res.render('main/list', context);
 });
 
 module.exports = router;
