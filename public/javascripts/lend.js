@@ -28,7 +28,7 @@ let calc_cost = function(){
     let curr_cost = cost + (days - 7)*multiplier;
     console.log(cost, multiplier);
     cost_el.innerHTML = `${curr_cost} zł`;
-    submit_button.onclick = "check_account_money()";
+    submit_button.onclick = check_account_money;
 }
 
 let get_lend_constants = function(){
