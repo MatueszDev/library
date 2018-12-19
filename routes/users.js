@@ -6,7 +6,11 @@ router.get('/', function(req, res, next) {
     res.send('respond with a resource');
 });
 router.get('/create_reader', function(req, res, next){
-    res.render('forms/reader');
+    let context = {
+        title: "Czytelnik",
+        super_user: req.session.super_use
+    }
+    res.render('forms/reader', context);
 });
 router.post('/create_reader', api_u.create_reader);
 

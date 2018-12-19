@@ -8,7 +8,7 @@ const books = require('../api/books');
 router.get('/author/create', function(req, res, next){
     let context = {
         title: "Autor",
-        super_user: req.session.super_use
+        super_user: req.session.super_user
     }
     res.render('forms/author', context);
 });
